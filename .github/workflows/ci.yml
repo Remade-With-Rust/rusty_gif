@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build
+        run: cargo build --release
+      # Release mode matters: the routing thresholds and quantizer kernels
+      # are corpus-gated in release; the `upstream` policy oracle and the
+      # route-boundary tests are what keep the dispatch honest.
+      - name: Test (release)
+        run: cargo test --release
+      # The quantizer is feature-gated; the decoder-only build must stay green.
+      - name: Test (release, no quantizer)
+        run: cargo test --release --no-default-features --features std,raii_no_panic
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - run: cargo fmt --check
+        # Advisory, not gating: this crate is a fork of image-rs/image-gif
+        # carried close to upstream (see UPSTREAM-CHANGES.md); reformatting
+        # or blanket-fixing inherited lints would make the diff against
+        # upstream unreviewable.
+        continue-on-error: true
+      - run: cargo clippy --release --all-targets
+        continue-on-error: true
