@@ -1,3 +1,7 @@
+### In The Wild with 36 Active Installs
+
+FREE RAG Converter Online -- <a href="https://RAGconverter.com">RAGconverter.com</a>
+
 # rusty_gif
 
 [![crates.io](https://img.shields.io/crates/v/rusty_gif?logo=rust)](https://crates.io/crates/rusty_gif) [![docs.rs](https://img.shields.io/docsrs/rusty_gif?logo=docsdotrs)](https://docs.rs/rusty_gif) [![CI](https://github.com/remade-with-rust/rusty_gif/actions/workflows/ci.yml/badge.svg)](https://github.com/remade-with-rust/rusty_gif/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)](https://github.com/remade-with-rust/rusty_gif/blob/main/LICENSE-MIT) [![Remade With Rust](https://img.shields.io/badge/Remade%20With-Rust-000?logo=rust&logoColor=fff)](https://github.com/Remade-With-Rust) [![By Mata Network](https://img.shields.io/badge/by-Mata%20Network-5b2be0)](https://www.mata.network/)
