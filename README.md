@@ -1,4 +1,4 @@
-### In The Wild with 1,263 Active Installs
+### In The Wild with 1,386 Active Installs
 
 FREE RAG Converter Online -- <a href="https://RAGconverter.com">RAGconverter.com</a>
 
